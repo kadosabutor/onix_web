@@ -7,33 +7,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        obsidian: '#0D1117', // Elsődleges sötét háttér [cite: 139]
-        emerald: '#0A3622',  // Nagyméretű statikus felületek [cite: 138]
-        cybermint: '#00D084', // Siker / Elsődleges Akció [cite: 142]
-        danger: '#EF4444',    // Destruktív akció [cite: 143]
-        warning: '#F59E0B',   // Figyelmeztetés [cite: 145]
-        surface: {
-          DEFAULT: '#161922', // Kártya felület, világosabb az obsidiannál [cite: 70, 133]
-          hover: '#1C202B',   // Hover állapotokhoz
-        }
+        background: "#0d1117",
+        primary: "#52f9a8",
+        "primary-container": "#00d084",
+        "on-primary-container": "#003d24",
+        secondary: "#bfedcf",
+        "secondary-container": "#264f39",
+        surface: "#161922", 
+        "surface-container-low": "#0f141a",
+        "surface-container": "#151a21",
+        "surface-container-high": "#1b2028",
+        "surface-container-highest": "#20262f",
+        "surface-bright": "#262c36",
+        "on-surface": "#f1f3fc",
+        "on-surface-variant": "#a8abb3",
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'], // A szoftver igáslova [cite: 151]
-        display: ['Outfit', 'sans-serif'], // Nagy címsorokhoz [cite: 150]
+        sans: ['Inter', 'sans-serif'],
+        display: ['Outfit', 'sans-serif'],
+        epilogue: ['Epilogue', 'sans-serif'],
       },
-      spacing: {
-        // A 4/8 pixeles rácsrendszer alapjai 
-        '1': '4px',
-        '2': '8px',
-        '3': '12px',
-        '4': '16px',
-        '6': '24px',
-        '8': '32px',
-        '12': '48px',
-        '16': '64px',
-      },
-      boxShadow: {
-        none: 'none', // Zéró Alapértelmezett Árnyék [cite: 75]
+      borderRadius: {
+        'xl': '0.75rem',
+        '2xl': '1.5rem',
       }
     },
   },

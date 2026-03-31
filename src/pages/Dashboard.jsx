@@ -1,117 +1,218 @@
-import { Plus, UserPlus, FileDown, Bell, Clock } from 'lucide-react';
+import { 
+  PlusSquare, UserPlus, FileDown, BellRing, ArrowRight, MapPin, AlertTriangle, Package
+} from 'lucide-react';
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-col gap-12 max-w-7xl mx-auto">
+    <div className="p-10 space-y-12 max-w-[1600px] mx-auto w-full">
       
-      {/* 1. Quick Actions Sáv [cite: 35] */}
-      <section className="flex items-center justify-between">
-        <div>
-          <h2 className="font-display text-3xl font-bold text-white tracking-tight">Jó reggelt!</h2>
-          <p className="text-white/60 mt-1">Itt az áttekintés a mai napról.</p>
-        </div>
-        <div className="flex items-center gap-4">
-          <button className="flex items-center gap-2 px-4 py-2 bg-surface hover:bg-surface-hover text-white/80 rounded-lg transition-colors border border-white/5">
-            <Bell size={18} /> Push Értesítés
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-surface hover:bg-surface-hover text-white/80 rounded-lg transition-colors border border-white/5">
-            <FileDown size={18} /> Számla Export
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-surface hover:bg-surface-hover text-white/80 rounded-lg transition-colors border border-white/5">
-            <UserPlus size={18} /> Új Ügyfél
-          </button>
-          <button className="flex items-center gap-2 px-5 py-2 bg-cybermint hover:bg-[#00e691] text-obsidian font-semibold rounded-lg transition-colors shadow-[0_0_15px_rgba(0,208,132,0.2)]">
-            <Plus size={20} /> Új Projekt
-          </button>
-        </div>
+      {/* Welcome Section */}
+      <section>
+        <h1 className="text-5xl font-display font-black tracking-tight text-white mb-2">Jó reggelt, Ákos!</h1>
+        <p className="text-on-surface-variant text-lg">Itt a mai áttekintés a folyamatban lévő kertépítési munkálatokról.</p>
       </section>
 
-      {/* 2. Active Projects Sáv (Középső) [cite: 36] */}
-      <section className="flex flex-col gap-4">
-        <h3 className="font-display text-xl font-bold text-white">Aktív Projektek</h3>
-        <div className="flex gap-6 overflow-x-auto pb-4 snap-x">
-          {/* Projekt Kártya Példa */}
-          <div className="min-w-[340px] bg-surface p-6 rounded-2xl snap-start border border-white/5 hover:bg-surface-hover transition-colors cursor-pointer">
-            <div className="flex justify-between items-start mb-6">
-              <div>
-                <h4 className="font-medium text-lg text-white">Kiss Család Terasz</h4>
-                <p className="text-sm text-white/40 mt-1">1124 Budapest, Fodor utca 12.</p>
-              </div>
-              <div className="px-2 py-1 bg-cyan-500/10 text-cyan-400 rounded text-xs font-semibold tracking-wide">
-                FOLYAMATBAN {/* Cián chip [cite: 116] */}
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-white/60">Készültség</span>
-                <span className="text-white">65%</span>
-              </div>
-              {/* Progress Bar 6px vastag [cite: 115] */}
-              <div className="h-[6px] w-full bg-obsidian rounded-full overflow-hidden">
-                <div className="h-full bg-cybermint w-[65%] rounded-full" />
-              </div>
-            </div>
-          </div>
+      {/* Quick Actions Row */}
+      <section className="flex flex-wrap gap-4 items-center">
+        <button className="flex items-center gap-2 bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-bold hover:scale-[0.98] transition-all">
+          <PlusSquare size={20} /> + Új Projekt
+        </button>
+        <button className="flex items-center gap-2 bg-transparent text-white border border-white/10 hover:bg-white/5 px-6 py-3 rounded-lg font-medium transition-all">
+          <UserPlus size={20} /> Új Ügyfél
+        </button>
+        <button className="flex items-center gap-2 bg-transparent text-white border border-white/10 hover:bg-white/5 px-6 py-3 rounded-lg font-medium transition-all">
+          <FileDown size={20} /> Számla Export
+        </button>
+        <button className="flex items-center gap-2 bg-transparent text-white border border-white/10 hover:bg-white/5 px-6 py-3 rounded-lg font-medium transition-all">
+          <BellRing size={20} /> Push Értesítés
+        </button>
+      </section>
+
+      {/* Active Projects Section (Horizontal Scroll) */}
+      <section>
+        <div className="flex justify-between items-end mb-6">
+          <h2 className="text-3xl font-display font-bold text-white tracking-tight">Aktív Projektek</h2>
+          <a className="text-primary font-medium flex items-center gap-1 hover:underline cursor-pointer">
+            Összes megtekintése <ArrowRight size={16} />
+          </a>
+        </div>
+        
+        <div className="snapping-container no-scrollbar flex gap-6 overflow-x-auto pb-4 -mx-2 px-2">
           
-           {/* További kártya példa */}
-           <div className="min-w-[340px] bg-surface p-6 rounded-2xl snap-start border border-white/5 hover:bg-surface-hover transition-colors cursor-pointer">
-            <div className="flex justify-between items-start mb-6">
-              <div>
-                <h4 className="font-medium text-lg text-white">Nagy Kertépítés</h4>
-                <p className="text-sm text-white/40 mt-1">2040 Budaörs, Károly király út</p>
-              </div>
-              <div className="px-2 py-1 bg-orange-500/10 text-orange-400 rounded text-xs font-semibold tracking-wide">
-                VÁRAKOZIK {/* Narancs chip [cite: 116] */}
-              </div>
+          {/* Project Card 1 */}
+          <div className="snapping-card min-w-[400px] bg-surface p-8 rounded-xl flex flex-col justify-between aspect-[1.4/1] relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-4">
+              <span className="px-3 py-1 bg-primary-container/10 text-primary-container text-xs font-bold rounded-full uppercase tracking-widest">Folyamatban</span>
             </div>
             <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-white/60">Készültség</span>
-                <span className="text-white">30%</span>
+              <h3 className="text-2xl font-bold text-white group-hover:text-primary transition-colors">Obsidian Villa - Kertépítés</h3>
+              <p className="text-white/50 text-sm flex items-center gap-2">
+                <MapPin size={16} /> Budapest, XII. kerület, Galgóczy u. 44.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <div className="flex justify-between items-end">
+                <span className="text-white font-medium">Haladás</span>
+                <span className="text-primary font-bold">72%</span>
               </div>
-              <div className="h-[6px] w-full bg-obsidian rounded-full overflow-hidden">
-                <div className="h-full bg-warning w-[30%] rounded-full" />
+              <div className="w-full bg-white/5 h-[6px] rounded-full overflow-hidden">
+                <div className="bg-primary h-full w-[72%] rounded-full shadow-[0_0_12px_rgba(0,208,132,0.4)]"></div>
               </div>
             </div>
           </div>
+
+          {/* Project Card 2 */}
+          <div className="snapping-card min-w-[400px] bg-surface p-8 rounded-xl flex flex-col justify-between aspect-[1.4/1] relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-4">
+              <span className="px-3 py-1 bg-orange-500/10 text-orange-400 text-xs font-bold rounded-full uppercase tracking-widest">Várakozik</span>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-2xl font-bold text-white group-hover:text-primary transition-colors">Modern Loft - Tetőterasz</h3>
+              <p className="text-white/50 text-sm flex items-center gap-2">
+                <MapPin size={16} /> Szentendre, Duna-part 12.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <div className="flex justify-between items-end">
+                <span className="text-white font-medium">Haladás</span>
+                <span className="text-orange-400 font-bold">45%</span>
+              </div>
+              <div className="w-full bg-white/5 h-[6px] rounded-full overflow-hidden">
+                <div className="bg-orange-400 h-full w-[45%] rounded-full shadow-[0_0_12px_rgba(251,146,60,0.4)]"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Project Card 3 */}
+          <div className="snapping-card min-w-[400px] bg-surface p-8 rounded-xl flex flex-col justify-between aspect-[1.4/1] relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-4">
+              <span className="px-3 py-1 bg-cyan-500/10 text-cyan-400 text-xs font-bold rounded-full uppercase tracking-widest">Folyamatban</span>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-2xl font-bold text-white group-hover:text-primary transition-colors">Zen Kert - Minimál</h3>
+              <p className="text-white/50 text-sm flex items-center gap-2">
+                <MapPin size={16} /> Telki, Pipacs utca 2.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <div className="flex justify-between items-end">
+                <span className="text-white font-medium">Haladás</span>
+                <span className="text-cyan-400 font-bold">88%</span>
+              </div>
+              <div className="w-full bg-white/5 h-[6px] rounded-full overflow-hidden">
+                <div className="bg-cyan-400 h-full w-[88%] rounded-full shadow-[0_0_12px_rgba(34,211,238,0.4)]"></div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* 3. Today's Tasks Sáv (Alsó) [cite: 37] */}
-      <section className="flex flex-col gap-4">
-        <h3 className="font-display text-xl font-bold text-white">Mai Teendők</h3>
-        <div className="bg-surface rounded-2xl p-2 border border-white/5">
-          {/* Vonalmentes ("Lose the lines") lista [cite: 37, 66] */}
-          <div className="flex items-center gap-6 p-4 hover:bg-surface-hover rounded-xl transition-colors cursor-pointer group">
-            <div className="flex items-center gap-2 text-white/50 group-hover:text-white/80 w-24">
-              <Clock size={16} /> <span className="text-sm">08:00</span>
-            </div>
-            <div className="flex-1 font-medium text-white/90">
-              Anyagbeszerzés és helyszíni felmérés
-            </div>
-            <div className="flex-1 text-sm text-white/50">
-              Kiss Család Terasz
-            </div>
-            <div className="flex gap-2">
-              {/* Résztvevők chipekben [cite: 37] */}
-              <span className="px-3 py-1 bg-obsidian text-white/70 text-xs rounded-full border border-white/5">Kovács P.</span>
-              <span className="px-3 py-1 bg-obsidian text-white/70 text-xs rounded-full border border-white/5">Nagy G.</span>
-            </div>
-          </div>
+      {/* Today's Tasks Section */}
+      <section>
+        <div className="flex justify-between items-end mb-6">
+          <h2 className="text-3xl font-display font-bold text-white tracking-tight">Mai Teendők</h2>
+          <span className="text-white/40 text-sm font-medium">2026. Március 21. Szombat</span>
+        </div>
+        
+        <div className="overflow-hidden bg-surface-container-low rounded-2xl">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="text-white/30 text-[10px] uppercase tracking-widest">
+                <th className="py-4 px-8 font-bold">Időpont</th>
+                <th className="py-4 px-8 font-bold">Feladat</th>
+                <th className="py-4 px-8 font-bold">Projekt</th>
+                <th className="py-4 px-8 font-bold text-right">Résztvevők</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5">
+              
+              <tr className="bg-transparent hover:bg-white/[0.02] transition-colors group">
+                <td className="py-6 px-8 text-white font-medium">08:30</td>
+                <td className="py-6 px-8">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <span className="text-white font-semibold">Tuják ültetése és tápanyagpótlás</span>
+                  </div>
+                </td>
+                <td className="py-6 px-8 text-primary/80 hover:text-primary cursor-pointer font-medium underline-offset-4 hover:underline">Obsidian Villa</td>
+                <td className="py-6 px-8">
+                  <div className="flex justify-end -space-x-2">
+                    <img className="w-8 h-8 rounded-full border-2 border-surface-container-low object-cover" alt="Team member" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Peti" />
+                    <img className="w-8 h-8 rounded-full border-2 border-surface-container-low object-cover" alt="Team member" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Gabi" />
+                    <div className="w-8 h-8 rounded-full border-2 border-surface-container-low bg-surface-container-high flex items-center justify-center text-[10px] text-white font-bold">+2</div>
+                  </div>
+                </td>
+              </tr>
 
-          <div className="flex items-center gap-6 p-4 hover:bg-surface-hover rounded-xl transition-colors cursor-pointer group">
-            <div className="flex items-center gap-2 text-white/50 group-hover:text-white/80 w-24">
-              <Clock size={16} /> <span className="text-sm">11:30</span>
+              <tr className="bg-surface-container/50 hover:bg-white/[0.02] transition-colors group">
+                <td className="py-6 px-8 text-white font-medium">11:00</td>
+                <td className="py-6 px-8">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-orange-400"></div>
+                    <span className="text-white font-semibold">Öntözőrendszer finomhangolása</span>
+                  </div>
+                </td>
+                <td className="py-6 px-8 text-primary/80 hover:text-primary cursor-pointer font-medium underline-offset-4 hover:underline">Modern Loft</td>
+                <td className="py-6 px-8">
+                  <div className="flex justify-end -space-x-2">
+                    <img className="w-8 h-8 rounded-full border-2 border-surface-container-low object-cover" alt="Team member" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Bence" />
+                    <img className="w-8 h-8 rounded-full border-2 border-surface-container-low object-cover" alt="Team member" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Laci" />
+                  </div>
+                </td>
+              </tr>
+
+              <tr className="bg-transparent hover:bg-white/[0.02] transition-colors group">
+                <td className="py-6 px-8 text-white font-medium">14:15</td>
+                <td className="py-6 px-8">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    <span className="text-white font-semibold">Gyepszőnyeg fektetés</span>
+                  </div>
+                </td>
+                <td className="py-6 px-8 text-primary/80 hover:text-primary cursor-pointer font-medium underline-offset-4 hover:underline">Zen Kert</td>
+                <td className="py-6 px-8">
+                  <div className="flex justify-end -space-x-2">
+                    <img className="w-8 h-8 rounded-full border-2 border-surface-container-low object-cover" alt="Team member" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Anna" />
+                    <img className="w-8 h-8 rounded-full border-2 border-surface-container-low object-cover" alt="Team member" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Tomi" />
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* Bento Stats Grid */}
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-surface-container-high p-6 rounded-xl space-y-4">
+          <p className="text-white/50 text-xs font-bold uppercase tracking-widest">Havi Bevétel</p>
+          <div className="flex items-end gap-2">
+            <span className="text-3xl font-bold text-white">4.2M Ft</span>
+            <span className="text-primary text-sm font-bold mb-1">+12%</span>
+          </div>
+        </div>
+        
+        <div className="bg-surface-container-high p-6 rounded-xl space-y-4">
+          <p className="text-white/50 text-xs font-bold uppercase tracking-widest">Aktív Alvállalkozók</p>
+          <div className="flex items-end gap-2">
+            <span className="text-3xl font-bold text-white">18 fő</span>
+            <span className="text-white/30 text-sm font-medium mb-1">4 csapatban</span>
+          </div>
+        </div>
+        
+        <div className="bg-primary-container p-6 rounded-xl space-y-4 relative overflow-hidden">
+          <div className="relative z-10">
+            <p className="text-on-primary-container/60 text-xs font-bold uppercase tracking-widest">Anyagkészlet</p>
+            <div className="flex items-end gap-2">
+              <span className="text-3xl font-bold text-on-primary-container">Alacsony</span>
+              <AlertTriangle className="text-on-primary-container mb-1" size={24} />
             </div>
-            <div className="flex-1 font-medium text-white/90">
-              Földmunkagép kiszállítása
-            </div>
-            <div className="flex-1 text-sm text-white/50">
-              Nagy Kertépítés
-            </div>
-            <div className="flex gap-2">
-              <span className="px-3 py-1 bg-obsidian text-white/70 text-xs rounded-full border border-white/5">Tóth B.</span>
-            </div>
+            <p className="text-on-primary-container/80 text-sm mt-2 font-medium underline cursor-pointer hover:text-on-primary-container">Rendelés most</p>
+          </div>
+          <div className="absolute -right-6 -bottom-6 opacity-20 text-on-primary-container">
+            <Package size={140} />
           </div>
         </div>
       </section>
